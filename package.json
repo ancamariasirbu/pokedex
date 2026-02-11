@@ -1,7 +1,9 @@
 {
   "name": "pokedex",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
+  
   "scripts": {
     "test": "vitest --run",
     "build": "npx tsc",
@@ -9,7 +11,7 @@
     "dev": "npx tsc && node dist/main.js"
   },
   "repository": {
-    "type": "module",
+    "type": "git",
     "url": "git+https://github.com/ancamariasirbu/pokedex.git"
   },
   "keywords": [],
