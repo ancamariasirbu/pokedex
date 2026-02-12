@@ -1,9 +1,11 @@
 import readline from "readline";
+import { getCommands } from "./commands_registry.js";
 
 
 export function cleanInput(input: string): string[] {
   return input.toLowerCase().trim().split(/\s+/);
-}
+};
+
 
 export function startREPL() {
   const rl = readline.createInterface({
@@ -12,17 +14,26 @@ export function startREPL() {
     prompt: "Pokedex > ",
   });
 
-    rl.prompt();
+  const commands = getCommands();
+  rl.prompt();
 
   rl.on("line", (input: string) => {
     const words = cleanInput(input);
 
-    if (words.length === 0) {
-      rl.prompt();
-      return;
-    }
+  const commandName = words[0];
+  const command = commands[commandName];
 
-    console.log(`Your command was: ${words[0]}`);
+
+   if (command) {
+      try {
+        command.callback(commands); // pass registry to callback
+      } catch (err) {
+        console.error("Error running command:", err);
+      }
+    } else {
+      console.log("Unknown command");
+    }
+    
     rl.prompt();
   });
 }
