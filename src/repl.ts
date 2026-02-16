@@ -7,7 +7,7 @@ export function startREPL(state: State) {
 
   rl.prompt();
 
-  rl.on("line", (input: string) => {
+  rl.on("line", async (input: string) => {
     const words = cleanInput(input);
 
     if (words.length === 0) {
@@ -20,7 +20,7 @@ export function startREPL(state: State) {
 
     if (command) {
       try {
-        command.callback(state); // pass state
+        await command.callback(state); // pass state
       } catch (err) {
         console.error("Error running command:", err);
       }
