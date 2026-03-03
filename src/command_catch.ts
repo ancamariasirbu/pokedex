@@ -19,7 +19,9 @@ export async function commandCatch(
   const caught = Math.random() < catchRate;
 
   if (caught) {
-    console.log(`${pokemonName} was caught!`);
+    console.log(
+      `${pokemonName} was caught! You may now inspect it with the inspect command.`,
+    );
     state.pokedex[response.name] = response;
   } else {
     console.log(`${pokemonName} escaped!`);
