@@ -20,7 +20,7 @@ export function startREPL(state: State) {
 
     if (command) {
       try {
-        await command.callback(state); // pass state
+        await command.callback(state, ...words.slice(1)); // pass state + args
       } catch (err) {
         console.error("Error running command:", err);
       }
