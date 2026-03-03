@@ -15,7 +15,7 @@ export async function commandCatch(
 
   const response = await state.pokeapi.fetchPokemon(pokemonName.toLowerCase());
 
-  const catchRate = 1 - response.base_experience / 255;
+  const catchRate = 1 - response.base_experience / 635; // 635 is the highest base experience in Gen 1-3, adjust as needed
   const caught = Math.random() < catchRate;
 
   if (caught) {
